@@ -1,0 +1,4 @@
+The difference between interface and type is you can extend class form interface but not from type
+
+Type allow you to declare unions (number | string)
+intersection Empoloyee & Manager

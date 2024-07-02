@@ -1,0 +1,4 @@
+Typescript is just an wrapper for js, it just makes development a bit easier and throws error then and there while development in js, it's now a new language, it's just an wrapper.
+
+Everything should not be given type in ts, ts is smart enought to detect types of obvious things, like an number when declared just after. 
+That's type inference in ts

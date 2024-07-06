@@ -1,10 +1,13 @@
 import Image from "next/image";
 import { Button } from "@repo/ui/button";
+import { Comp } from "@repo/ui/comp";
+import {} from "@repo/ui/button";
 import styles from "./page.module.css";
 
 export default function Home() {
   return (
     <div className={styles.page}>
+      <Comp></Comp>
       <main className={styles.main}>
         <Image
           className={styles.logo}
@@ -47,7 +50,7 @@ export default function Home() {
           </a>
         </div>
         <Button
-          appName="docs"
+          appName="web"
           className="mx-auto rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
         >
           Open alert

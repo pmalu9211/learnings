@@ -1,2 +1,9 @@
 initialization 
 npx create-turbo@latest
+
+you have to manually export the components  or things in D:\Pratham\Coding\Learnings\Monorepo\my-turborepo\packages\ui\package.json
+
+or you can do it with generator bu being in the folder ui and run, npm run generate:component to generate it
+
+
+typescript with node, in backend we have initialised an normal node js an with that particular config https://github.com/vercel/turbo/blob/main/examples/kitchen-sink/apps/api/tsconfig.json

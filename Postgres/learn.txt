@@ -1,0 +1,77 @@
+Transactions
+
+Atomic: Ensures that either all or none operations of the transactions succeed. The transaction is either committed successfully or aborted and rolled back.
+Consistent: Ensures that the states of the database before and after the transaction are valid (i.e. any existing invariants about the data are maintained).
+Isolated: Ensures that concurrently running transactions have the same effect as if they were running in serial.
+Durability: Ensures that after the transaction succeeded, any writes are being stored persistently.
+
+$transaction([])
+
+
+SEED
+
+
+This guide describes how to seed your database using Prisma Client and Prisma ORM's integrated seeding functionality. Seeding allows you to consistently re-create the same data in your database and can be used to:
+
+Populate your database with data that is required for your application to start, such as a default language or currency.
+Provide basic data for validating and using your application in a development environment. This is particularly useful if you are using Prisma Migrate, which sometimes requires resetting your development database.
+
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  }
+  in package.json
+
+  import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
+async function main() {
+  const alice = await prisma.user.upsert({
+    where: { email: 'alice@prisma.io' },
+    update: {},
+    create: {
+      email: 'alice@prisma.io',
+      name: 'Alice',
+      posts: {
+        create: {
+          title: 'Check out Prisma with Next.js',
+          content: 'https://www.prisma.io/nextjs',
+          published: true,
+        },
+      },
+    },
+  })
+  const bob = await prisma.user.upsert({
+    where: { email: 'bob@prisma.io' },
+    update: {},
+    create: {
+      email: 'bob@prisma.io',
+      name: 'Bob',
+      posts: {
+        create: [
+          {
+            title: 'Follow Prisma on Twitter',
+            content: 'https://twitter.com/prisma',
+            published: true,
+          },
+          {
+            title: 'Follow Nexus on Twitter',
+            content: 'https://twitter.com/nexusgql',
+            published: true,
+          },
+        ],
+      },
+    },
+  })
+  console.log({ alice, bob })
+}
+main()
+  .then(async () => {
+    await prisma.$disconnect()
+  })
+  .catch(async (e) => {
+    console.error(e)
+    await prisma.$disconnect()
+    process.exit(1)
+  })
+
+
+  npx prisma db seed
